@@ -1,4 +1,5 @@
 #include <main.h>;
+#include <colourSensor.h>
 
 unsigned long lastTime = 0;
 int num = 0;
@@ -7,6 +8,7 @@ void setup();
 
 void loop(){
     unsigned long currentTime = millis();
+    String colour = getColour();
 
     turnLeft();
 
@@ -34,7 +36,6 @@ void loop(){
     num++;
 
     if (num == 6){
-        break;
+        return;
     }
-
 }
