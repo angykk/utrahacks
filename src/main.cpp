@@ -26,7 +26,11 @@ void setup()
 }
 
 void loop(){
+<<<<<<< HEAD
     Serial.println(getColour());
+=======
+    getColour();
+>>>>>>> 2d5723b08b9894d531e43ae3d02f13dc30745541
 }
 
 
