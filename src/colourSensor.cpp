@@ -21,7 +21,7 @@ int blue;
 
 const int black = 7000; // Constant (can stay here)
 
-void getColour()
+String getColour()
 {
 	// Read Red Pulse Width
 	redPW = getRedPW(); // 2000
@@ -42,20 +42,38 @@ void getColour()
 
 	delay(200);
 
-	// Print output to Serial Monitor
-	Serial.print("Red PW = ");
-	Serial.print(redPW);
-	Serial.print(" - Green PW = ");
-	Serial.print(greenPW);
-	Serial.print(" - Blue PW = ");
-	Serial.println(bluePW);
-	// Print output to Serial Monitor
-	Serial.print("Red = ");
-	Serial.print(red);
-	Serial.print(" - Green = ");
-	Serial.print(green);
-	Serial.print(" - Blue = ");
-	Serial.println(blue);
+	// // Print output to Serial Monitor
+	// Serial.print("Red PW = ");
+	// Serial.print(redPW);
+	// Serial.print(" - Green PW = ");
+	// Serial.print(greenPW);
+	// Serial.print(" - Blue PW = ");
+	// Serial.println(bluePW);
+	// // Print output to Serial Monitor
+	// Serial.print("Red = ");
+	// Serial.print(red);
+	// Serial.print(" - Green = ");
+	// Serial.print(green);
+	// Serial.print(" - Blue = ");
+	// Serial.println(blue);
+
+	if (red < 100 && green < 100 && blue < 100) {
+        return "Black";
+    }
+    // Check dominant colors with a threshold to avoid close values
+    else if (red > green && red > blue) {
+        return "Red";
+    }
+    else if (green > red && green > blue) {
+        return "Green";
+    }
+    else if (blue > red && blue > green) {
+        return "Blue";
+    }
+	else{
+		return "Unknown";
+	}
+
 
 }
 
