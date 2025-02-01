@@ -10,11 +10,7 @@
 int getRedPW();
 int getGreenPW();
 int getBluePW();
-<<<<<<< HEAD
 String getColour();
-=======
-void getColour();
->>>>>>> 2d5723b08b9894d531e43ae3d02f13dc30745541
 
 // Variables for Color Pulse Width Measurements
 extern int redPW;

@@ -21,11 +21,7 @@ int blue;
 
 const int black = 7000; // Constant (can stay here)
 
-<<<<<<< HEAD
 String getColour()
-=======
-void getColour()
->>>>>>> 2d5723b08b9894d531e43ae3d02f13dc30745541
 {
 	// Read Red Pulse Width
 	redPW = getRedPW(); // 2000
@@ -46,7 +42,6 @@ void getColour()
 
 	delay(200);
 
-<<<<<<< HEAD
 	// // Print output to Serial Monitor
 	// Serial.print("Red PW = ");
 	// Serial.print(redPW);
@@ -78,7 +73,7 @@ void getColour()
 	else{
 		return "Unknown";
 	}
-=======
+
 	// Print output to Serial Monitor
 	Serial.print("Red PW = ");
 	Serial.print(redPW);
@@ -93,7 +88,20 @@ void getColour()
 	Serial.print(green);
 	Serial.print(" - Blue = ");
 	Serial.println(blue);
->>>>>>> 2d5723b08b9894d531e43ae3d02f13dc30745541
+
+	if (red > green && red > blue) {
+		return "Red";
+	}
+	else if (green > red && green > blue) {
+		return "Green";
+	}
+	else if (blue > red && blue > green) {
+		return "Blue";
+	}
+	else if (red < 100 && green < 100 && blue < 100) {
+		return "Black";
+	}
+
 
 }
 
