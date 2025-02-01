@@ -1,5 +1,5 @@
 #include <Arduino.h>
-
+#include <NewPing.h> //for ultrasonic sensor 
 void goForward();
 void turnLeft();
 void turnRight();
@@ -13,7 +13,6 @@ const int rightMotor = 1;
 
 //analog pins
 const int colorSensor = 0; //analog pin
-
 
 //other
 const int speed = 127; //range is 0-255 (255 is max speed, 0 is off)
