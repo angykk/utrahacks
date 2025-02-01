@@ -72,12 +72,16 @@ void loop()
 	}
 
 	// Print output to Serial Monitor
+
+	/*
 	Serial.print("Red PW = ");
 	Serial.print(redPW);
 	Serial.print(" - Green PW = ");
 	Serial.print(greenPW);
 	Serial.print(" - Blue PW = ");
 	Serial.println(bluePW);
+	
+	*/
 }
 
 
