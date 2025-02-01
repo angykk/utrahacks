@@ -74,7 +74,6 @@ String getColour()
 		return "Unknown";
 	}
 
-
 }
 
 // Function to read Red Pulse Widths
