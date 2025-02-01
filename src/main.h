@@ -111,6 +111,8 @@ void turn180() {
 }
 
 void stop(){
-  digitalWrite(leftMotor, 0);
-  digitalWrite(rightMotor, 0);
+  digitalWrite(l_p, LOW);
+  digitalWrite(l_n, LOW);
+  digitalWrite(r_p, LOW);
+  digitalWrite(r_n, LOW);
 }
