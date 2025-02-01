@@ -58,3 +58,8 @@ void turnRight_fast(){
   digitalWrite(leftMotor, speed);
   digitalWrite(rightMotor, -speed);
 }
+
+void stop(){
+  digitalWrite(leftMotor, 0);
+  digitalWrite(rightMotor, 0);
+}
