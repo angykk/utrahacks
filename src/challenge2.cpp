@@ -1,97 +1,104 @@
 #include <Arduino.h>
-#include <algorithm>
 #include <iostream>
-using namespace std;
 
+// Define color sensor pins
 #define S0 4
 #define S1 5
 #define S2 6
 #define S3 7
 #define sensorOut 8
 
-const int black = 800;
-// Function to read Red Pulse Widths
-int getRedPW()
-{
-    // Set sensor to read Red only
-    digitalWrite(S2, LOW);
-    digitalWrite(S3, LOW);
-    // Define integer to represent Pulse Width
-    int PW;
-    // Read the output Pulse Width
-    PW = pulseIn(sensorOut, LOW);
-    // Return the value
-    return PW;
-}
+// Function prototypes (add these!)
+int getRedPW();
+int getGreenPW();
+int getBluePW();
 
-// Function to read Green Pulse Widths
-int getGreenPW()
-{
-    // Set sensor to read Green only
-    digitalWrite(S2, HIGH);
-    digitalWrite(S3, HIGH);
-    // Define integer to represent Pulse Width
-    int PW;
-    // Read the output Pulse Width
-    PW = pulseIn(sensorOut, LOW);
-    // Return the value
-    return PW;
-}
-
-// Function to read Blue Pulse Widths
-int getBluePW()
-{
-    // Set sensor to read Blue only
-    digitalWrite(S2, LOW);
-    digitalWrite(S3, HIGH);
-    // Define integer to represent Pulse Width
-    int PW;
-    // Read the output Pulse Width
-    PW = pulseIn(sensorOut, LOW);
-    // Return the value
-    return PW;
-}
+// Variables for Color Pulse Width Measurements
+int redPW = 0;
+int greenPW = 0;
+int bluePW = 0;
 
 void setup()
 {
-    // put your setup code here, to run once:
+	// Set S0 - S3 as outputs
+	pinMode(S0, OUTPUT);
+	pinMode(S1, OUTPUT);
+	pinMode(S2, OUTPUT);
+	pinMode(S3, OUTPUT);
 
-    // Set S0 - S3 as outputs
-    pinMode(S0, OUTPUT);
-    pinMode(S1, OUTPUT);
-    pinMode(S2, OUTPUT);
-    pinMode(S3, OUTPUT);
+	// Set Pulse Width scaling to 20%
+	digitalWrite(S0, HIGH);
+	digitalWrite(S1, LOW);
 
-    // Set Sensor output as input
-    pinMode(sensorOut, INPUT);
+	// Set Sensor output as input
+	pinMode(sensorOut, INPUT);
 
-    // Setup Serial Monitor
-    Serial.begin(9600);
+	// Setup Serial Monitor
+	Serial.begin(9600);
 }
 
 void loop()
 {
-    // put your main code here, to run repeatedly:
-    int red = getRedPW();
-    int blue = getBluePW();
-    int green = getGreenPW();
+	// Read Red Pulse Width
+	redPW = getRedPW();
+	// Delay to stabilize sensor
+	delay(200);
 
-    int colour = min(min(red, blue),green);
+	// Read Green Pulse Width
+	greenPW = getGreenPW();
+	// Delay to stabilize sensor
+	delay(200);
 
-    if(colour > black){
-        //go straight
-    }
+	// Read Blue Pulse Width
+	bluePW = getBluePW();
+	// Delay to stabilize sensor
+	delay(200);
 
-    else if(colour == red){
-        //uturn
-    }
+	// Print output to Serial Monitor
+	Serial.print("Red PW = ");
+	Serial.print(redPW);
+	Serial.print(" - Green PW = ");
+	Serial.print(greenPW);
+	Serial.print(" - Blue PW = ");
+	Serial.println(bluePW);
+}
 
-    else if (colour == blue){
-        //turn left
-    }
 
-    else{//green
-        //turn right
-    }
-    
+// Function to read Red Pulse Widths
+int getRedPW() {
+	// Set sensor to read Red only
+	digitalWrite(S2,LOW);
+	digitalWrite(S3,LOW);
+	// Define integer to represent Pulse Width
+	int PW;
+	// Read the output Pulse Width
+	PW = pulseIn(sensorOut, LOW);
+	// Return the value
+	return PW;
+}
+
+// Function to read Green Pulse Widths
+int getGreenPW() {
+	// Set sensor to read Green only
+	digitalWrite(S2,HIGH);
+	digitalWrite(S3,HIGH);
+	// Define integer to represent Pulse Width
+	int PW;
+	// Read the output Pulse Width
+	PW = pulseIn(sensorOut, LOW);
+	// Return the value
+	return PW;
+}
+
+// Function to read Blue Pulse Widths
+int getBluePW() {
+	// Set sensor to read Blue only
+	digitalWrite(S2,LOW);
+	digitalWrite(S3,HIGH);
+	// Define integer to represent Pulse Width
+	int PW;
+	// Read the output Pulse Width
+	PW = pulseIn(sensorOut, LOW);
+	// Return the value
+	return PW;
 }
