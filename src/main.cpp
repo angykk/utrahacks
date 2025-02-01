@@ -5,8 +5,19 @@ void turnLeft();
 void turnRight();
 void turn180();
 
+//PIN OUT (can change later if needed)
+const int leftMotor = 0;
+const int rightMotor = 1;
+
+
+
+//Move functions
 void setup() {
     // put your setup code here, to run once:
+    pinMode(leftMotor, OUTPUT);
+    pinMode(rightMotor, OUTPUT);
+    
+    
 }
 
 void loop() {
@@ -15,6 +26,8 @@ void loop() {
 
 // put function definitions here:
 void goForward(){
+  
+  
 
 }
 void turnLeft(){
