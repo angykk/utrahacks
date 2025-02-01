@@ -19,7 +19,7 @@ void loop(){
         currentTime = millis();
     }
 
-    unsigned long turnLength = currentTime/2;
+    unsigned long turnLength = (currentTime - lastTime) / 2;
 
     lastTime = millis();
     currentTime = millis();
@@ -28,13 +28,43 @@ void loop(){
         currentTime = millis();
         turnRight();
     }
+    stop();
 
+    String cur_colour = colour;
+
+    while (colour == cur_colour){
+        goForward();
+    }
     stop();
 
     num++;
 
-    if (num == 6){
-        break;
+    if (num == 6) {
+        lastTime = millis();
+        currentTime = millis();
+
+        String cur_colour = colour;
+
+        while (colour == cur_colour){
+            goForward();
+        }
+        stop();
+
+        currentTime = millis();
+
+        unsigned long turnLength = (currentTime - lastTime) / 2;
+
+        lastTime = millis();
+        currentTime = millis();
+
+        while(currentTime - lastTime < turnLength){
+            currentTime = millis();
+            turnRight();
+        }
+        stop();
+
+        
+
     }
 
 }
