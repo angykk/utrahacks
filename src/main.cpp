@@ -1,11 +1,12 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+void goForward();
+void turnLeft();
+void turnRight();
+void turn180();
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    // put your setup code here, to run once:
 }
 
 void loop() {
@@ -13,6 +14,15 @@ void loop() {
 }
 
 // put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void goForward(){
+
+}
+void turnLeft(){
+
+}
+void turnRight(){
+
+}
+void turn180(){
+
 }
