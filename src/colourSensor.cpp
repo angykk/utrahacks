@@ -57,7 +57,19 @@ String getColour()
 	Serial.print(" - Blue = ");
 	Serial.println(blue);
 
-	
+	if (red > green && red > blue) {
+		return "Red";
+	}
+	else if (green > red && green > blue) {
+		return "Green";
+	}
+	else if (blue > red && blue > green) {
+		return "Blue";
+	}
+	else if (red < 100 && green < 100 && blue < 100) {
+		return "Black";
+	}
+
 
 }
 
