@@ -10,8 +10,11 @@ void turn180();
 //digital pins
 const int l_p = 0; //positive pin for left motor
 const int l_n = 1; //negative pin for right motor
+const int en_l = 2; //enable pin for left motor (analog control on motor driver)
+
 const int r_p = 3; //positive pin for left motor
 const int r_n = 24; //negative pin for right motor 
+const int en_r = 5; //enable pin for right motor (analog control on motor driver)
 
 //analog pins
 const int colorSensor = A0; //analog pin
@@ -20,8 +23,6 @@ const int colorSensor = A0; //analog pin
 const int DEFAULT_SPEED = 127; //range is 0-255 (255 is max DEFAULT_SPEED, 0 is off)
 
 
-
-//test commit 
 //Move functions 
 void setup() {
     // put your setup code here, to run once:
@@ -40,48 +41,60 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+    goForward();
   
 }
 
 // put function definitions here:
 void goForward(){
+
   digitalWrite(l_p, HIGH);
   digitalWrite(l_n, LOW);
-
+  analogWrite(en_l, DEFAULT_SPEED);
+  
   digitalWrite(r_p, HIGH);
   digitalWrite(r_n, LOW);
-
+  analogWrite(en_r, DEFAULT_SPEED);
 }
+
 void turnLeft(){
   digitalWrite(l_p, HIGH);
   digitalWrite(l_n, HIGH);
-
+  
   digitalWrite(r_p, HIGH);
   digitalWrite(r_n, LOW);
+  analogWrite(en_r, DEFAULT_SPEED);
 }
+
 void turnRight(){
   digitalWrite(l_p, HIGH);
   digitalWrite(l_n, LOW);
+  analogWrite(en_l, DEFAULT_SPEED);
 
   digitalWrite(r_p, HIGH);
   digitalWrite(r_n, HIGH);
 }
+
 
 void turnLeft_FAST(){
   digitalWrite(l_p, HIGH);
   digitalWrite(l_n, LOW);
+  analogWrite(en_l, 255);
 
   digitalWrite(r_p, LOW);
   digitalWrite(r_n, HIGH);
+  analogWrite(en_r, 255);
  
 }
 void turnRight_fast(){
   digitalWrite(l_p, LOW);
   digitalWrite(l_n, HIGH);
+  analogWrite(en_l, 255);
 
   digitalWrite(r_p, HIGH);
   digitalWrite(r_n, LOW);
-  
+  analogWrite(en_r, 255);
+
 }
 
 void turn180() {
