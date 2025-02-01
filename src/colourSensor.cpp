@@ -74,34 +74,6 @@ String getColour()
 		return "Unknown";
 	}
 
-	// Print output to Serial Monitor
-	Serial.print("Red PW = ");
-	Serial.print(redPW);
-	Serial.print(" - Green PW = ");
-	Serial.print(greenPW);
-	Serial.print(" - Blue PW = ");
-	Serial.println(bluePW);
-	// Print output to Serial Monitor
-	Serial.print("Red = ");
-	Serial.print(red);
-	Serial.print(" - Green = ");
-	Serial.print(green);
-	Serial.print(" - Blue = ");
-	Serial.println(blue);
-
-	if (red > green && red > blue) {
-		return "Red";
-	}
-	else if (green > red && green > blue) {
-		return "Green";
-	}
-	else if (blue > red && blue > green) {
-		return "Blue";
-	}
-	else if (red < 100 && green < 100 && blue < 100) {
-		return "Black";
-	}
-
 
 }
 
