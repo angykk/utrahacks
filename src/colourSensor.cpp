@@ -21,7 +21,7 @@ int blue;
 
 const int black = 7000; // Constant (can stay here)
 
-void getColour()
+String getColour()
 {
 	// Read Red Pulse Width
 	redPW = getRedPW(); // 2000
