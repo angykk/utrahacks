@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include <iostream>
+#include <string> 
+#include <algorithm>
 
 // Define color sensor pins
-#define S0 4
+#define S0 4 
 #define S1 5
 #define S2 6
 #define S3 7
@@ -27,7 +29,7 @@ void setup()
 	pinMode(S3, OUTPUT);
 
 	// Set Pulse Width scaling to 20%
-	digitalWrite(S0, HIGH);
+	digitalWrite(S0, LOW);
 	digitalWrite(S1, LOW);
 
 	// Set Sensor output as input
@@ -46,6 +48,7 @@ void loop()
 
 	// Read Green Pulse Width
 	greenPW = getGreenPW();
+	
 	// Delay to stabilize sensor
 	delay(200);
 
@@ -53,6 +56,20 @@ void loop()
 	bluePW = getBluePW();
 	// Delay to stabilize sensor
 	delay(200);
+
+
+	int result = std::min(bluePW, redPW, greenPW);
+	
+	Serial.print("Color being detected: ");
+	if (result == redPW) {
+		Serial.println("Red");
+	}
+	else if (result == greenPW) {
+		Serial.println("Green");
+	}
+	else {
+		Serial.println("Blue");
+	}
 
 	// Print output to Serial Monitor
 	Serial.print("Red PW = ");
@@ -95,6 +112,7 @@ int getBluePW() {
 	// Set sensor to read Blue only
 	digitalWrite(S2,LOW);
 	digitalWrite(S3,HIGH);
+
 	// Define integer to represent Pulse Width
 	int PW;
 	// Read the output Pulse Width
