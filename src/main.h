@@ -1,8 +1,4 @@
 #include <Arduino.h>
-<<<<<<< HEAD
-
-
-=======
 #include <NewPing.h> //for ultrasonic sensor 
 
 // ------- PIN OUT (can change later if needed) ---------
@@ -36,4 +32,3 @@ void turnRight_FAST();
 void turn180();
 void stop();
 // -------- END OF MOVE FUNCTIONS --------
->>>>>>> Alex-Moving-functions
