@@ -5,7 +5,7 @@ void turnLeft();
 void turnRight();
 void turn180();
 
-//PIN OUT (can change later if needed)
+// ------- PIN OUT (can change later if needed) ---------
 
 //digital pins
 const int l_p = 0; //positive pin for left motor
@@ -22,8 +22,10 @@ const int colorSensor = A0; //analog pin
 //other
 const int DEFAULT_SPEED = 127; //range is 0-255 (255 is max DEFAULT_SPEED, 0 is off)
 
+// ------- PIN OUT END ---------
 
-//Move functions 
+
+// -------- START OF MOVE FUNCTIONS -------- 
 void setup() {
     // put your setup code here, to run once:
 
@@ -47,7 +49,6 @@ void loop() {
 
 // put function definitions here:
 void goForward(){
-
   digitalWrite(l_p, HIGH);
   digitalWrite(l_n, LOW);
   analogWrite(en_l, DEFAULT_SPEED);
@@ -112,3 +113,4 @@ void stop(){
   digitalWrite(r_p, LOW);
   digitalWrite(r_n, LOW);
 }
+// -------- END OF MOVE FUNCTIONS --------
