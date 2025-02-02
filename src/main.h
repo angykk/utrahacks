@@ -1,66 +1,43 @@
 #include <Arduino.h>
+#include <NewPing.h> //for ultrasonic sensor 
 
-void goForward();
-void turnLeft();
-void turnRight();
-void turn180();
+// Define pins
+#define ENA 11
+#define N1 9
+#define N2 8
+#define N3 7
+#define N4 6
+#define ENB 10
 
-//PIN OUT (can change later if needed)
+// ------- PIN OUT (can change later if needed) ---------
 
 //digital pins
-const int leftMotor = 0; //digital pin
-const int rightMotor = 1; 
+extern const int l_p = 0; //positive pin for left motor
+extern const int l_n = 1; //negative pin for right motor
+extern const int en_l = A2; //enable pin for left motor (analog control on motor driver)
+
+extern const int r_p = 3; //positive pin for left motor
+extern const int r_n = 24; //negative pin for right motor 
+extern const int en_r = A3; //enable pin for right motor (analog control on motor driver)
 
 //analog pins
-const int colorSensor = A0; //analog pin
-
+extern const int colorSensor = A0; //analog pin
 
 //other
-const int speed = 127; //range is 0-255 (255 is max speed, 0 is off)
+extern const int DEFAULT_SPEED = 127; //range is 0-255 (255 is max DEFAULT_SPEED, 0 is off)
+
+// ------- PIN OUT END ---------
 
 
-//Move functions
-void setup() {
-    // put your setup code here, to run once:
-    pinMode(leftMotor, OUTPUT);
-    pinMode(rightMotor, OUTPUT);
-    pinMode(colorSensor, INPUT);
-    Serial.begin(9600);    
-    
-}
+// -------- START OF MOVE FUNCTIONS -------- 
+void loop();
+void setup();
+void goForward();
+void turnLeft();
+void turnLeft_FAST();
+void turnRight();
+void turnRight_FAST();
+void turn180();
+void stop();
+// -------- END OF MOVE FUNCTIONS --------
 
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  
-}
-
-// put function definitions here:
-void goForward(){
-  
-  digitalWrite(leftMotor, speed);
-  digitalWrite(rightMotor, speed);
-
-}
-void turnLeft(){
-   digitalWrite(leftMotor, 0);
-   digitalWrite(rightMotor, speed);
-}
-void turnRight(){
-  digitalWrite(leftMotor, speed);
-  digitalWrite(rightMotor, 0);
-}
-
-void turnLeft_FAST(){
-   digitalWrite(leftMotor, -speed);
-   digitalWrite(rightMotor, speed);
-}
-void turnRight_fast(){
-  digitalWrite(leftMotor, speed);
-  digitalWrite(rightMotor, -speed);
-}
-
-void stop(){
-  digitalWrite(leftMotor, 0);
-  digitalWrite(rightMotor, 0);
-}
