@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Servo.h>
 
 
 extern unsigned long lastTime;
