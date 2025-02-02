@@ -1,6 +1,7 @@
 #include <main.h>
 #include <colourSensor/colourSensor.h>
 #include <superSonic.h>
+#include <Servo.h>
 
 unsigned long distance = 50;
 String colour;
