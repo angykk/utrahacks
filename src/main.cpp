@@ -22,10 +22,6 @@ const int speed = 127; // range is 0-255 (255 is max speed, 0 is off)
 
 void setup()
 {
-	// oe pin specific stuff
-	pinMode(OE_PIN, OUTPUT);
-  	digitalWrite(OE_PIN, LOW);
-
 	pinMode(trigPin, OUTPUT);
 	pinMode(echoPin, INPUT);
 	pinMode(led, OUTPUT);
@@ -52,7 +48,7 @@ void setup()
 
 void loop()
 {
-	Serial.println(getDistance());
+	// Serial.println(getDistance());
 	Serial.println(getColour());
 	delay(500);
 }

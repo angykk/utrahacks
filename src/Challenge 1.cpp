@@ -1,6 +1,6 @@
 // #include <Arduino.h>
 // #include <main.h>;
-// #include <colourSensor.h>
+// #include <colourSensor/colourSensor.h>
 
 // unsigned long lastTime = 0;
 // int num = 0;
