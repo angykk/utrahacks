@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <colourSensor.h>
+#include <colourSensor/colourSensor.h>
 #include <superSonic.h>
 #include <NewPing.h>
 
