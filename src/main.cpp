@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <colourSensor.h>
 #include <main.h>
 
 // -------- START OF MOVE FUNCTIONS -------- 
