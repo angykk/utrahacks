@@ -1,47 +1,42 @@
-// #include <Arduino.h>
-// #include <main.h>;
-// #include <colourSensor/colourSensor.h>
-
-/*
-
+#include <Arduino.h>
 #include <main.h>;
-#include <colourSensor.h>
-
-// unsigned long lastTime = 0;
-// int num = 0;
+#include <colourSensor/colourSensor.h>
 
 
-// void challenge1(){
-//     unsigned long currentTime = millis();
-//     String colour = getColour();
+unsigned long lastTime = 0;
+int num = 0;
 
-//     turnLeft();
 
-//     if (colour == "red" || colour == "green" || colour == "blue"){
-//         lastTime = millis();
-//     }
+void challenge1(){
+    unsigned long currentTime = millis();
+    String colour = getColour();
 
-//     if (colour != "red" && colour != "green" && colour != "blue"){
-//         stop();
-//         currentTime = millis();
-//     }
+    turnLeft();
 
-//     unsigned long turnLength = currentTime/2;
+    if (colour == "red" || colour == "green" || colour == "blue"){
+        lastTime = millis();
+    }
 
-//     lastTime = millis();
-//     currentTime = millis();
+    if (colour != "red" && colour != "green" && colour != "blue"){
+        stop();
+        currentTime = millis();
+    }
 
-//     while(currentTime - lastTime < turnLength){
-//         currentTime = millis();
-//         turnRight();
-//     }
+    unsigned long turnLength = currentTime/2;
 
-//     stop();
+    lastTime = millis();
+    currentTime = millis();
 
-//     num++;
+    while(currentTime - lastTime < turnLength){
+        currentTime = millis();
+        turnRight();
+    }
+
+    stop();
+
+    num++;
 
     if (num == 6){
         return;
     }
 }
-*/
