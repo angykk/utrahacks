@@ -12,9 +12,8 @@ std::vector<String> color_sequence = {"Red", "Green", "Blue", "Green", "Blue"};
 std::unordered_map<String, std::vector<unsigned long>> colour_map;
 int current_index = 0; // current colour we are looking for
 
-bool onTile = false;
+//bool onTile = false;
 unsigned long x1, x2, y1, y2;
-
 bool inYAxis = true;
 bool posDir = true;
 unsigned long startTime;
@@ -53,7 +52,7 @@ void loop()
     goForward();
     startTime = millis();
 
-    // if a wall is detected stop and turn
+    // if a wall is detected stop and turn 
     if (getDistance() < WALL_THRESHOLD)
     {
         stop();
@@ -71,17 +70,17 @@ void loop()
     // when we detect the colour we're looking for:
     if (detected_color == color_sequence[current_index])
     {
-        stop();
+        
         updateCurrentPosition();
 
+        x1 = x;
+        y1 = y;
         if (isNewTile(detected_color, x, y))
         {
             //unsigned long enterTime = millis() - startTime;
 
             blinkLED();
-            // colour_map[detected_color].push_back({x, y});
-            colour_map[detected_color].push_back(x);
-            colour_map[detected_color].push_back(y);
+            
 
             // print for debugging
             Serial.print("Detected: ");
@@ -97,24 +96,29 @@ void loop()
             {
                 // CODE HERE TO GET X1,X2,Y1,Y2 DIMS, ADD TO HASHMAP
                 
-
-                if (detected_color == "Green")
-                {
-                    x1 = millis() - startTime; // Example, capture time as position in X or Y
-                    firstGreen = false;        // After first green, no need to capture again
-                }
-                else if (detected_color == "Blue")
-                {
-                    x2 = millis() - startTime; // Example, capture time as position in X or Y
-                    firstBlue = false;         // After first blue, no need to capture again
-                }
+                // colour_map[detected_color].push_back({x, y});
+            colour_map[detected_color].push_back(x);
+            colour_map[detected_color].push_back(y);
+                
             }
         }
         else
         {
             Serial.println("Duplicate Tile, Keep Searching...");
         }
+
     }
+    updateCurrentPosition();
+    x2 = x;
+    y2 = y;
+    colour_map[detected_color].push_back(x);
+    colour_map[detected_color].push_back(y);
+    turn180();
+    goForward();
+    turnRight();
+    turn180();
+    turn180();
+    turnRight();
 
     if (current_index >= color_sequence.size())
     {
@@ -198,11 +202,11 @@ void updateCurrentPosition()
         // If moving in the Y-axis, update Y position
         if (posDir)
         {
-            y2 = distance; // Positive direction (forward)
+            y = y + distance; // Positive direction (forward)
         }
         else
         {
-            y1 = -distance; // Negative direction (backward)
+            y = y - distance; // Negative direction (backward)
         }
     }
     else
@@ -210,11 +214,11 @@ void updateCurrentPosition()
         // If moving in the X-axis, update X position
         if (posDir)
         {
-            x2 = distance; // Positive direction (forward)
+            x = x + distance; // Positive direction (forward)
         }
         else
         {
-            x1 = -distance; // Negative direction (backward)
+            x = x - distance; // Negative direction (backward)
         }
     }
 }
