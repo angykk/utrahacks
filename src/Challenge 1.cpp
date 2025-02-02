@@ -12,6 +12,7 @@ void loop(){
 
     if (colour == "red" || colour == "green" || colour == "blue"){
         lastTime = millis();
+        turnLeft();
     }
 
     if (colour != "red" && colour != "green" && colour != "blue"){
