@@ -11,8 +11,8 @@
 // unsigned long turnLength;
 // unsigned long turnBackTime;
 
-void challenge1()
-{
+//void challenge1();
+
     // while (colour  == cur_colour)
     // {
     //     turnLeft();
