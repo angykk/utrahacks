@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 #include <iostream>
-#include <colourSensor/colourSensor.h>
+#include <colourSensor.h>
 
 int redPW;
 int greenPW;
