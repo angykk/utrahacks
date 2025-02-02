@@ -103,11 +103,7 @@ void turn180() {
   delay(1000); //change delay value accordingly (how long it will keep on turning)
   
   //stop motors after delay
-  digitalWrite(l_p, LOW);
-  digitalWrite(l_n, LOW);
-
-  digitalWrite(r_p, LOW);
-  digitalWrite(r_n, LOW);
+  stop();
 }
 
 void stop(){
