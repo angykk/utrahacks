@@ -28,8 +28,6 @@ void setup()
   // supersonic outputs
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(led, OUTPUT);
-  pinMode(led2, OUTPUT);
 
   myServo.attach(5);
 
@@ -39,7 +37,10 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-  challenge1();
+  //challenge1();
+
+  Serial.println(getColour());
+  delay(500);
 }
 
 // put function definitions here:
