@@ -40,6 +40,9 @@ void loop()
   //challenge1();
 
   Serial.println(getColour());
+  Serial.begin(9600);
+  
+  goForward(); //test function for movement
   delay(500);
 }
 
