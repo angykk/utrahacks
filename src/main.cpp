@@ -1,10 +1,14 @@
 #include <Arduino.h>
 #include <Servo.h>
+#include "Challenge_1.h"
 #include "main.h"
 #include "colourSensor/colourSensor.h"
 #include "superSonic.h"
 
 // -------- START OF MOVE FUNCTIONS --------
+const int defaultsped = 127; // range is 0-255 (255 is max DEFAULT_SPEED, 0 is off)
+Servo myServo;
+
 void setup()
 {
   // put your setup code here, to run once:
@@ -27,15 +31,15 @@ void setup()
   pinMode(led, OUTPUT);
   pinMode(led2, OUTPUT);
 
-  pinMode(colorSensor, INPUT);
+  myServo.attach(5);
+
   Serial.begin(9600);
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
-  Serial.println(getColour());
-  turnLeft();
+  challenge1();
 }
 
 // put function definitions here:
@@ -43,52 +47,65 @@ void goForward()
 {
   digitalWrite(N3, HIGH);
   digitalWrite(N4, LOW);
-  analogWrite(ENA, DEFAULT_SPEED);
+  digitalWrite(ENB, defaultsped); // LEFT SIDE
 
   digitalWrite(N2, HIGH);
   digitalWrite(N1, LOW);
-  analogWrite(ENB, DEFAULT_SPEED);
+  digitalWrite(ENA, defaultsped); // RIGHT SIDE
+}
+
+void goBackward()
+{
+  digitalWrite(N3, LOW);
+  digitalWrite(N4, HIGH);
+  digitalWrite(ENB, defaultsped); // LEFT SIDE
+
+  digitalWrite(N2, LOW);
+  digitalWrite(N1, HIGH);
+  digitalWrite(ENA, defaultsped); // RIGHT SIDE
 }
 
 void turnLeft()
 {
   digitalWrite(N3, HIGH);
-  digitalWrite(N4, HIGH);
+  digitalWrite(N4, LOW);
+  digitalWrite(ENB, 0);
 
   digitalWrite(N2, HIGH);
   digitalWrite(N1, LOW);
-  analogWrite(ENB, DEFAULT_SPEED);
+  digitalWrite(ENA, defaultsped);
 }
 
 void turnRight()
 {
   digitalWrite(N3, HIGH);
   digitalWrite(N4, LOW);
-  analogWrite(ENA, DEFAULT_SPEED);
+  digitalWrite(ENB, defaultsped);
 
   digitalWrite(N2, HIGH);
-  digitalWrite(N1, HIGH);
+  digitalWrite(N1, LOW);
+  digitalWrite(ENA, 0);
 }
 
 void turnLeft_FAST()
 {
-  digitalWrite(N3, HIGH);
-  digitalWrite(N4, LOW);
-  analogWrite(ENA, 255);
-
-  digitalWrite(N2, LOW);
-  digitalWrite(N1, HIGH);
-  analogWrite(ENB, 255);
-}
-void turnRight_FAST()
-{
   digitalWrite(N3, LOW);
   digitalWrite(N4, HIGH);
-  analogWrite(ENA, 255);
+  digitalWrite(ENB, defaultsped);
 
   digitalWrite(N2, HIGH);
   digitalWrite(N1, LOW);
-  analogWrite(ENB, 255);
+  digitalWrite(ENA, defaultsped);
+}
+void turnRight_FAST()
+{
+  digitalWrite(N3, HIGH);
+  digitalWrite(N4, LOW);
+  digitalWrite(ENB, defaultsped);
+
+  digitalWrite(N2, LOW);
+  digitalWrite(N1, HIGH);
+  digitalWrite(ENA, defaultsped);
 }
 
 void stop()

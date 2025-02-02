@@ -4,72 +4,101 @@
 #include <Servo.h>
 #include "Challenge_1.h"
 
+int num = 0;
+String cur_colour = "Black";
+String colour = getColour();
+unsigned long lastTime= 0;
+unsigned long currentTime= 0;
+unsigned long turnLength;
+unsigned long turnBackTime;
 
-void challenge1(){
-
-    turnLeft();
-    colour = getColour();
-
-    if (colour == "red" || colour == "green" || colour == "blue"){
-        lastTime = millis();
-    }
-
-    if (colour != "red" && colour != "green" && colour != "blue"){
+void challenge1()
+{
+    while (colour  == cur_colour)
+    {
+        turnLeft();
+        delay(20); // placeholder
+        colour = getColour();
         stop();
-        currentTime = millis();
+        goForward();
+        delay(20);
+        colour = getColour();
+        stop();
+        goBackward();
+        delay(20);
+        colour = getColour();
+        stop();
+    }
+    stop();
+    while ((colour = getColour()) != cur_colour)
+    {
+        turnLeft();
+    }
+    lastTime = millis();
+    stop();
+
+    while ((colour = getColour()) != cur_colour)
+    {
+        turnLeft();
     }
 
-    unsigned long turnLength = (currentTime - lastTime) / 2;
+    currentTime = millis();
+    stop();
+
+    turnLength = (currentTime - lastTime) / 2;
 
     lastTime = millis();
     currentTime = millis();
 
-    while(currentTime - lastTime < turnLength){
+    while (currentTime - lastTime < turnLength)
+    {
         currentTime = millis();
-        turnRight();
+        turnLeft();
     }
     stop();
 
     cur_colour = colour;
 
-    while (colour == cur_colour){
+    while (colour == cur_colour)
+    {
+        colour = getColour();
         goForward();
     }
     stop();
 
     num++;
 
-    if (num == 6) {
+    if (num == 5)
+    {
         lastTime = millis();
         currentTime = millis();
 
         cur_colour = colour;
 
-        while (colour == cur_colour){
+        while (colour == cur_colour)
+        {
             goForward();
         }
         stop();
 
         currentTime = millis();
 
-        unsigned long turnLength = (currentTime - lastTime) / 2;
+        turnBackTime = (currentTime - lastTime);
 
         lastTime = millis();
         currentTime = millis();
 
-        while(currentTime - lastTime < turnLength){
+        while (currentTime - lastTime < turnBackTime)
+        {
             currentTime = millis();
-            turnRight();
+            goBackward();
         }
         stop();
 
-        for (servPos = 0; servPos <= 180; servPos += 1) { // goes from 0 degrees to 180 degrees
-        // in steps of 1 degree
-            myServo.write(servPos);              // tell servo to go to position in variable 'servPos'
-            delay(15);                       // waits 15ms for the servo to reach the position
+        for (int pos = 90; pos >= 0; pos -= 1)
+        {
+            myServo.write(pos); // Moves servo backward from 180° to 0°
+            delay(15);
         }
-
-
     }
-
 }

@@ -4,13 +4,13 @@
 #include <Servo.h>
 
 
-extern unsigned long lastTime= 0;
-extern unsigned long currentTime= 0;
-extern unsigned long turnLength= 0;
+extern unsigned long lastTime;
+extern unsigned long currentTime;
+extern unsigned long turnLength;
+extern unsigned long turnBackTime;
 extern String colour;
 extern String cur_colour;
-extern int num = 0;
+extern int num;
 extern Servo myServo;
-extern int servPos;
 
 void challenge1();

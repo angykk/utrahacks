@@ -22,12 +22,7 @@ extern const int r_n = 24; //negative pin for right motor
 
 */
 
-//analog pins
-extern const int colorSensor = A0; //analog pin
-
 //other
-extern const int DEFAULT_SPEED = 127; //range is 0-255 (255 is max DEFAULT_SPEED, 0 is off)
-
 // ------- PIN OUT END ---------
 
 
@@ -35,6 +30,7 @@ extern const int DEFAULT_SPEED = 127; //range is 0-255 (255 is max DEFAULT_SPEED
 void loop();
 void setup();
 void goForward();
+void goBackward();
 void turnLeft();
 void turnLeft_FAST();
 void turnRight();
