@@ -1,11 +1,11 @@
 #include <Arduino.h>
 
 // Define color sensor pins
-#define S0 4
-#define S1 5
-#define S2 6
-#define S3 7
-#define sensorOut 8
+#define S0 0
+#define S1 1
+#define S2 2
+#define S3 3
+#define sensorOut 4
 
 int getRedPW();
 int getGreenPW();

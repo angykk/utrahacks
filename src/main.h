@@ -1,9 +1,13 @@
 #include <Arduino.h>
-<<<<<<< HEAD
-
-
-=======
 #include <NewPing.h> //for ultrasonic sensor 
+
+// Define pins
+#define ENA 11
+#define N1 9
+#define N2 8
+#define N3 7
+#define N4 6
+#define ENB 10
 
 // ------- PIN OUT (can change later if needed) ---------
 
@@ -36,4 +40,4 @@ void turnRight_FAST();
 void turn180();
 void stop();
 // -------- END OF MOVE FUNCTIONS --------
->>>>>>> Alex-Moving-functions
+

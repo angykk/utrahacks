@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <main.h>
+//#include <colourSensor/colourSensor.h>
 
 // -------- START OF MOVE FUNCTIONS -------- 
 void setup() {
@@ -19,7 +20,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-    goForward();
+  //Serial.println(getColour());
+goForward();
   
 }
 
