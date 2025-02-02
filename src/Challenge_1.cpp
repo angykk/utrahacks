@@ -11,35 +11,36 @@
 // unsigned long turnLength;
 // unsigned long turnBackTime;
 
-// void challenge1()
-// {
-//     while (colour  == cur_colour)
-//     {
-//         turnLeft();
-//         delay(20); // placeholder
-//         colour = getColour();
-//         stop();
-//         goForward();
-//         delay(20);
-//         colour = getColour();
-//         stop();
-//         goBackward();
-//         delay(20);
-//         colour = getColour();
-//         stop();
-//     }
-//     stop();
-//     while ((colour = getColour()) != cur_colour)
-//     {
-//         turnLeft();
-//     }
-//     lastTime = millis();
-//     stop();
+void challenge1()
+{
+    // while (colour  == cur_colour)
+    // {
+    //     turnLeft();
+    //     delay(20);
+    //     colour = getColour();
+    //     stop();
+    //     goForward();
+    //     delay(20);
+    //     colour = getColour();
+    //     stop();
+    //     goBackward();
+    //     delay(20);
+    //     colour = getColour();
+    //     stop();
+    // }
+    //stop();
+    //cur_colour = colour;
+    // while ((colour = getColour()) != cur_colour)
+    // {
+    //     turnRight();
+    // }
+    //lastTime = millis();
+    //stop();
 
-//     while ((colour = getColour()) != cur_colour)
-//     {
-//         turnLeft();
-//     }
+    // while ((colour = getColour()) != cur_colour)
+    // {
+    //     turnLeft();
+    // }
 
 //     currentTime = millis();
 //     stop();
@@ -49,21 +50,21 @@
 //     lastTime = millis();
 //     currentTime = millis();
 
-//     while (currentTime - lastTime < turnLength)
-//     {
-//         currentTime = millis();
-//         turnLeft();
-//     }
-//     stop();
+    // while (currentTime - lastTime < turnLength)
+    // {
+    //     currentTime = millis();
+    //     turnLeft();
+    // }
+    // stop();
 
 //     cur_colour = colour;
 
-//     while (colour == cur_colour)
-//     {
-//         colour = getColour();
-//         goForward();
-//     }
-//     stop();
+    // while (colour == cur_colour)
+    // {
+    //     colour = getColour();
+    //     goForward();
+    // }
+    //stop();
 
 //     num++;
 
@@ -74,11 +75,11 @@
 
 //         cur_colour = colour;
 
-//         while (colour == cur_colour)
-//         {
-//             goForward();
-//         }
-//         stop();
+        // while (colour == cur_colour)
+        // {
+        //     goForward();
+        // }
+        //stop();
 
 //         currentTime = millis();
 
@@ -87,17 +88,17 @@
 //         lastTime = millis();
 //         currentTime = millis();
 
-//         while (currentTime - lastTime < turnBackTime)
-//         {
-//             currentTime = millis();
-//             goBackward();
-//         }
-//         stop();
+        // while (currentTime - lastTime < turnBackTime)
+        // {
+        //     currentTime = millis();
+        //     goBackward();
+        // }
+       // stop();
 
-//         for (int pos = 90; pos >= 0; pos -= 1)
-//         {
-//             myServo.write(pos); // Moves servo backward from 180° to 0°
-//             delay(15);
-//         }
+        // for (int pos = 90; pos >= 0; pos -= 1)
+        // {
+        //     myServo.write(pos); // Moves servo backward from 180° to 0°
+        //     delay(15);
+        // }
 //     }
 // }
