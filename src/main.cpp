@@ -1,54 +1,99 @@
 #include <Arduino.h>
+#include <main.h>
 #include <colourSensor/colourSensor.h>
-#include <superSonic.h>
-#include <NewPing.h>
 
-void goForward();
-void turnLeft();
-void turnRight();
-void turn180();
 
-// PIN OUT (can change later if needed)
+// -------- START OF MOVE FUNCTIONS -------- 
+void setup() {
+    // put your setup code here, to run once:
 
-// digital pins
-const int leftMotor = 0; // digital pin
-const int rightMotor = 1;
+    //motor outputs
+    pinMode(l_p, OUTPUT);
+    pinMode(l_n, OUTPUT);
+    pinMode(r_p, OUTPUT);
+    pinMode(r_n, OUTPUT);
 
-// analog pins
-const int colorSensor = A0; // analog pin
-
-// other
-const int speed = 127; // range is 0-255 (255 is max speed, 0 is off)
-
-void setup()
-{
-	pinMode(trigPin, OUTPUT);
-	pinMode(echoPin, INPUT);
-	pinMode(led, OUTPUT);
-	pinMode(led2, OUTPUT);
-	// Set S0 - S3 as outputs
-	pinMode(S0, OUTPUT);
-	pinMode(S1, OUTPUT);
-	pinMode(S2, OUTPUT);
-	pinMode(S3, OUTPUT);
-
-	pinMode(leftMotor, OUTPUT);
-	pinMode(rightMotor, OUTPUT);
-
-	// Set Pulse Width scaling to 20%
-	digitalWrite(S0, HIGH);
-	digitalWrite(S1, LOW);
-
-	// Set Sensor output as input
-	pinMode(sensorOut, INPUT);
-
-	// Setup Serial Monitor
-	Serial.begin(9600);
+    pinMode(colorSensor, INPUT);
+    Serial.begin(9600);    
+    
 }
 
-void loop()
-{
-	Serial.println(getDistance());
-	Serial.println(getColour());
-	delay(500);
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  //Serial.println(getColour());
+goForward();
+  
 }
+
+// put function definitions here:
+void goForward(){
+  digitalWrite(l_p, HIGH);
+  digitalWrite(l_n, LOW);
+  analogWrite(en_l, DEFAULT_SPEED);
+  
+  digitalWrite(r_p, HIGH);
+  digitalWrite(r_n, LOW);
+  analogWrite(en_r, DEFAULT_SPEED);
+}
+
+void turnLeft(){
+  digitalWrite(l_p, HIGH);
+  digitalWrite(l_n, HIGH);
+  
+  digitalWrite(r_p, HIGH);
+  digitalWrite(r_n, LOW);
+  analogWrite(en_r, DEFAULT_SPEED);
+}
+
+void turnRight(){
+  digitalWrite(l_p, HIGH);
+  digitalWrite(l_n, LOW);
+  analogWrite(en_l, DEFAULT_SPEED);
+
+  digitalWrite(r_p, HIGH);
+  digitalWrite(r_n, HIGH);
+}
+
+
+void turnLeft_FAST(){
+  digitalWrite(l_p, HIGH);
+  digitalWrite(l_n, LOW);
+  analogWrite(en_l, 255);
+
+  digitalWrite(r_p, LOW);
+  digitalWrite(r_n, HIGH);
+  analogWrite(en_r, 255);
+ 
+}
+void turnRight_FAST(){
+  digitalWrite(l_p, LOW);
+  digitalWrite(l_n, HIGH);
+  analogWrite(en_l, 255);
+
+  digitalWrite(r_p, HIGH);
+  digitalWrite(r_n, LOW);
+  analogWrite(en_r, 255);
+
+}
+
+void stop(){
+  digitalWrite(l_p, LOW);
+  digitalWrite(l_n, LOW);
+  digitalWrite(r_p, LOW);
+  digitalWrite(r_n, LOW);
+}
+
+void turn180() {
+  // quick turn 180 degrees
+  turnLeft_FAST();
+  delay(1000); //change delay value accordingly (how long it will keep on turning)
+  
+  digitalWrite(l_p, LOW);
+  digitalWrite(l_n, LOW);
+  digitalWrite(r_p, LOW);
+  digitalWrite(r_n, LOW);
+}
+
+
+// -------- END OF MOVE FUNCTIONS --------
