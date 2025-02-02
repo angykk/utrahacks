@@ -15,6 +15,14 @@ void setup() {
 
     pinMode(colorSensor, INPUT);
     Serial.begin(9600);    
+    // pinMode(l_p, OUTPUT);
+    // pinMode(l_n, OUTPUT);
+    // pinMode(r_p, OUTPUT);
+    // pinMode(r_n, OUTPUT);
+
+    // pinMode(colorSensor, INPUT);
+    // Serial.begin(9600);    
+	// myservo.attach(9);
     
 }
 
