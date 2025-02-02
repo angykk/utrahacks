@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "colourSensor/colourSensor.h"
 #include "superSonic.h"
+#include "main.cpp"
 #include <unordered_map>
 #include <vector>
 
@@ -18,6 +19,8 @@ bool inYAxis = true;
 bool posDir = true;
 unsigned long startTime;
 unsigned long distance;
+unsigned long x = 0;
+unsigned long y = 0;
 
 void blinkLED();
 bool isNewTile(String color, unsigned long x1, unsigned long x2, unsigned long y1, unsigned long y2);
@@ -47,15 +50,15 @@ void setup()
 
 void loop()
 {
-    moveForward();
+    goForward();
     startTime = millis();
 
     // if a wall is detected stop and turn
     if (getDistance() < WALL_THRESHOLD)
     {
-        stopMotors();
+        stop();
         delay(200);
-        turnLeft();
+        turnRight();
 
         // need to update our current position in current axis and start counting again in new axis
         updateCurrentPosition();
@@ -68,7 +71,7 @@ void loop()
     // when we detect the colour we're looking for:
     if (detected_color == color_sequence[current_index])
     {
-        stopMotors();
+        stop();
         updateCurrentPosition();
 
         if (isNewTile(detected_color, x, y))
@@ -93,6 +96,7 @@ void loop()
             if (detected_color == "Green" && firstGreen || detected_color == "Blue" && firstBlue)
             {
                 // CODE HERE TO GET X1,X2,Y1,Y2 DIMS, ADD TO HASHMAP
+                
 
                 if (detected_color == "Green")
                 {
@@ -114,7 +118,7 @@ void loop()
 
     if (current_index >= color_sequence.size())
     {
-        stopMotors();
+        stop();
         Serial.println("Sequence Complete!");
         while (true)
             blinkLED();
@@ -132,7 +136,13 @@ bool isNewTile(String colour, int x, int y)
 {
     for (auto &coord : colour_map[colour])
     {
-    
+        // if the x and y coordinates are between the ones we have saved for this colour, 
+        //we have already visited this tile
+        //coord.first;
+        if (x >= colour_map[colour][0] && x <= colour_map[colour][1] && y >= colour_map[colour][2] && y <= colour_map[colour][3]) {
+                return false;  // Point is inside the rectangle
+            }
+
     }
 
     return true;
