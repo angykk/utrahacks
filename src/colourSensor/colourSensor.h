@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 // Define color sensor pins
+#define OE_PIN 3
 #define S0 4
 #define S1 5
 #define S2 6
