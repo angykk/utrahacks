@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <main.h>
-//#include <colourSensor/colourSensor.h>
+#include <colourSensor/colourSensor.h>
+
 
 // -------- START OF MOVE FUNCTIONS -------- 
 void setup() {
