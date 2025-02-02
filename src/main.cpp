@@ -1,10 +1,14 @@
 #include <Arduino.h>
+#include <Servo.h>
 #include <main.h>
 #include <colourSensor/colourSensor.h>
+#include <colourSensor/colourSensor.h>
 
-// -------- START OF MOVE FUNCTIONS -------- 
-void setup() {
-    // put your setup code here, to run once:
+
+// -------- START OF MOVE FUNCTIONS --------
+void setup()
+{
+  // put your setup code here, to run once:
 
     //motor outputs
     pinMode(N3, OUTPUT);
@@ -17,8 +21,8 @@ void setup() {
 
 }
 
-
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
   Serial.println(getColour());
   goForward();
@@ -54,7 +58,6 @@ void turnRight(){
   digitalWrite(N1, HIGH);
 }
 
-
 void turnLeft_FAST(){
   digitalWrite(N3, HIGH);
   digitalWrite(N4, LOW);
@@ -83,7 +86,8 @@ void stop(){
   digitalWrite(N1, LOW);
 }
 
-void turn180() {
+void turn180()
+{
   // quick turn 180 degrees
   turnLeft_FAST();
   delay(1000); //change delay value accordingly (how long it will keep on turning)
@@ -93,6 +97,5 @@ void turn180() {
   digitalWrite(N2, LOW);
   digitalWrite(N1, LOW);
 }
-
 
 // -------- END OF MOVE FUNCTIONS --------
