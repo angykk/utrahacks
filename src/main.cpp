@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Servo.h>
-#include <main.h>
+#include "main.h"
 #include "colourSensor/colourSensor.h"
 #include "superSonic.h"
 
@@ -35,7 +35,7 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   Serial.println(getColour());
-  goForward();
+  turnLeft();
 }
 
 // put function definitions here:

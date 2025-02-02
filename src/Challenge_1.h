@@ -1,10 +1,12 @@
+#pragma once
+
 #include <Arduino.h>
 #include <Servo.h>
 
 
-extern unsigned long lastTime;
-extern unsigned long currentTime;
-extern unsigned long turnLength;
+extern unsigned long lastTime= 0;
+extern unsigned long currentTime= 0;
+extern unsigned long turnLength= 0;
 extern String colour;
 extern String cur_colour;
 extern int num = 0;

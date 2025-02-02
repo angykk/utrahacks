@@ -1,16 +1,9 @@
 #include <Arduino.h>
-#include <main.h>;
-#include <colourSensor/colourSensor.h>
+#include "main.h"
+#include "colourSensor/colourSensor.h"
 #include <Servo.h>
+#include "Challenge_1.h"
 
-unsigned long lastTime = 0;
-unsigned long currentTime = 0;
-unsigned long turnLength;
-String colour;
-String cur_colour;
-int num = 0;
-Servo myServo;
-int servPos = 0;
 
 void challenge1(){
 

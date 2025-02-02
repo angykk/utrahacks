@@ -1,36 +1,37 @@
-#include <main.h>
-#include <colourSensor/colourSensor.h>
-#include <superSonic.h>
+
+#include "main.h"
+#include "colourSensor/colourSensor.h"
+#include "superSonic.h"
 #include <Servo.h>
 
-unsigned long distance = 50;
-String colour;
+unsigned long distanceFrom = 50.0; 
+String colourOf;
 bool isMoving = false;
 const long length = 14;
 
 void challenge2()
 {
-    colour = getColour();
-    distance = getDistance();
+    colourOf = getColour();
+    distanceFrom = getDistance();
     goForward();
     isMoving = true;
 
-    if (distance < length)
+    if (distanceFrom < length)
     {
         stop();
-        if (colour == "blue")
+        if (colourOf == "blue")
         {
             turnLeft_FAST();
         }
-        else if (colour == "green")
+        else if (colourOf == "green")
         {
-            turnRight_fast();
+            turnRight_FAST();
         }
-        else if (colour == "black")
+        else if (colourOf == "black")
         {
             stop();
         }
-        else if (colour == "red")
+        else if (colourOf == "red")
         {
             turn180();
         }

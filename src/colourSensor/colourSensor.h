@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Arduino.h>
 
 // Define color sensor pins
