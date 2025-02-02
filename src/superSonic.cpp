@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Arduino.h>
-#include <iostream>
 #include <superSonic.h>
 
 long duration, distance;

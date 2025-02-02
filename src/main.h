@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <Servo.h>
 // Define pins
 #define ENA 11
 #define N1 9 //right motor (negative) (r_n)
@@ -8,6 +9,8 @@
 #define N3 7 // left motor (positive)
 #define N4 6 //left motor (negative)
 #define ENB 10
+
+extern Servo myServo;
 
 // ------- PIN OUT (can change later if needed) ---------
 

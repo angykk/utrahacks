@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <Servo.h>
 #include "Challenge_1.h"
 #include "main.h"
 #include "colourSensor/colourSensor.h"
@@ -11,6 +10,9 @@ Servo myServo;
 
 void setup()
 {
+  Serial.begin(9600);
+  while (!Serial) {}
+  
   // put your setup code here, to run once:
 
   // motor outputs
@@ -40,9 +42,14 @@ void loop()
   //challenge1();
 
   Serial.println(getColour());
-  Serial.begin(9600);
+  Serial.println(getDistance());
   
-  goForward(); //test function for movement
+  
+   for (int pos = 90; pos >= 0; pos -= 1)
+        {
+            myServo.write(pos); // Moves servo backward from 180° to 0°
+            delay(15);
+        }
   delay(500);
 }
 
@@ -100,6 +107,9 @@ void turnLeft_FAST()
   digitalWrite(N2, HIGH);
   digitalWrite(N1, LOW);
   digitalWrite(ENA, defaultsped);
+
+  //delay()
+  //stop();
 }
 void turnRight_FAST()
 {
@@ -110,6 +120,8 @@ void turnRight_FAST()
   digitalWrite(N2, LOW);
   digitalWrite(N1, HIGH);
   digitalWrite(ENA, defaultsped);
+  //delay()
+  //stop();
 }
 
 void stop()
@@ -126,10 +138,7 @@ void turn180()
   turnLeft_FAST();
   delay(1000); // change delay value accordingly (how long it will keep on turning)
 
-  digitalWrite(N3, LOW);
-  digitalWrite(N4, LOW);
-  digitalWrite(N2, LOW);
-  digitalWrite(N1, LOW);
+  stop();
 }
 
 // -------- END OF MOVE FUNCTIONS --------

@@ -2,12 +2,11 @@
 #include "main.h"
 #include "colourSensor/colourSensor.h"
 #include "superSonic.h"
-#include <Servo.h>
 
 unsigned long distanceFrom = 50.0; 
 String colourOf;
 bool isMoving = false;
-const long length = 14;
+const long length = 28/2;
 
 void challenge2()
 {
@@ -19,19 +18,19 @@ void challenge2()
     if (distanceFrom < length)
     {
         stop();
-        if (colourOf == "blue")
+        if (colourOf == "Blue")
         {
             turnLeft_FAST();
         }
-        else if (colourOf == "green")
+        else if (colourOf == "Green")
         {
             turnRight_FAST();
         }
-        else if (colourOf == "black")
+        else if (colourOf == "Black")
         {
             stop();
         }
-        else if (colourOf == "red")
+        else if (colourOf == "Red")
         {
             turn180();
         }
