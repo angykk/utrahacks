@@ -17,7 +17,7 @@ unsigned long x1, x2, y1, y2;
 bool inYAxis = true;
 bool posDir = true;
 unsigned long startTime;
-unsigned long currTime;
+unsigned long distance;
 
 void blinkLED();
 bool isNewTile(String color, unsigned long x1, unsigned long x2, unsigned long y1, unsigned long y2);
@@ -48,6 +48,7 @@ void setup()
 void loop()
 {
     moveForward();
+    startTime = millis();
 
     // if a wall is detected stop and turn
     if (getDistance() < WALL_THRESHOLD)
@@ -57,7 +58,7 @@ void loop()
         turnLeft();
 
         // need to update our current position in current axis and start counting again in new axis
-
+        updateCurrentPosition();
         updateDirection();
         return;
     }
@@ -68,10 +69,11 @@ void loop()
     if (detected_color == color_sequence[current_index])
     {
         stopMotors();
+        updateCurrentPosition();
 
         if (isNewTile(detected_color, x, y))
         {
-            unsigned long enterTime = millis() - startTime;
+            //unsigned long enterTime = millis() - startTime;
 
             blinkLED();
             // colour_map[detected_color].push_back({x, y});
@@ -128,50 +130,69 @@ void blinkLED()
 
 bool isNewTile(String colour, int x, int y)
 {
-    for (auto &coord : color_map[colour])
+    for (auto &coord : colour_map[colour])
     {
-        if (coord[0] == x1 && coord[1] == x2 && coord[2] == y1 && coord[3] == y2)
-        {
-            return false;
-        }
+    
     }
 
     return true;
 }
 
 // Update the direction of movement after a turn (X or Y axis)
-void updateDirection()
+void updateDirection(bool isRight)
 {
-    if (inYAxis)
+    if (isRight && inYAxis && posDir)
     {
-        // Switching from Y-axis to X-axis after a turn
+        posDir = true;
         inYAxis = false;
-    }
-    else
-    {
-        // Switching from X-axis to Y-axis after a turn
+    } 
+    else if (isRight && !inYAxis && posDir){
+        posDir = false;
         inYAxis = true;
     }
-
-    // Toggle the movement direction (positive or negative)
-    posDir = !posDir; // Reverse direction after each turn
+    else if (!isRight && inYAxis && posDir)
+    {
+        posDir = false;
+        inYAxis = false;
+    }
+    else if (!isRight && !inYAxis && posDir)
+    {
+        posDir = true;
+        inYAxis = true;
+    }
+    else if(isRight && inYAxis && !posDir){
+        posDir = false;
+        inYAxis = false;
+    }
+    else if(isRight && !inYAxis && !posDir){
+        posDir = true;
+        inYAxis = true;
+    }
+    else if(!isRight && inYAxis && !posDir){
+        posDir = true;
+        inYAxis = false;
+    }
+    else if(!isRight && !inYAxis && !posDir){
+        posDir = false;
+        inYAxis = true;
+    }
+    
 }
 
 // Update current position based on movement direction (time elapsed)
 void updateCurrentPosition()
 {
-    currTime = millis() - startTime; // Calculate time elapsed since start
-
+    distance = millis() - startTime;
     if (inYAxis)
     {
         // If moving in the Y-axis, update Y position
         if (posDir)
         {
-            y2 = currTime; // Positive direction (forward)
+            y2 = distance; // Positive direction (forward)
         }
         else
         {
-            y1 = -currTime; // Negative direction (backward)
+            y1 = -distance; // Negative direction (backward)
         }
     }
     else
@@ -179,11 +200,11 @@ void updateCurrentPosition()
         // If moving in the X-axis, update X position
         if (posDir)
         {
-            x2 = currTime; // Positive direction (forward)
+            x2 = distance; // Positive direction (forward)
         }
         else
         {
-            x1 = -currTime; // Negative direction (backward)
+            x1 = -distance; // Negative direction (backward)
         }
     }
 }
